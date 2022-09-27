@@ -58,7 +58,8 @@ class _CameraPageState extends State<CameraPage> {
       final filePath = '${DateTime.now().millisecondsSinceEpoch}.png';
       final path = join(tmpDirectory.path, filePath);
 
-      await _controller.takePicture();
+      final file = await _controller.takePicture();
+      file.saveTo(path);
 
       widget.didProvideImagePath(path);
     } catch (e) {
